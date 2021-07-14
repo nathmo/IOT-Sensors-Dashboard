@@ -1,0 +1,62 @@
+
+Goal
+Get data from sensors
+Display data from sensors
+store data from sensors
+Queue commands for sensors
+
+Structure
+
+
+┌─────────────────┐   ┌──────────────────┐   ┌───────────────┐    ┌───────────────┐
+│                 │   │                  │   │               │    │               │
+│ Alert (mail)    │   │ Dashboard        │   │ Data Export   │    │ Remote admin  │
+│                 │   │                  │   │               │    │               │
+└─────────┬───────┘   └─────┬────────────┘   └──┬────────────┘    └──────┬────────┘
+          │                 │                   │                        │
+          └─────────────┐   │  ┌────────────────┘                        │
+                        │   │  │                                         │
+                      ┌─┴───┴──┴─────────┐                               │
+                      │                  ├───────────────────────────────┘
+                      │ MySQL DB         │
+                      │                  │
+                      └──────┬───────────┘
+                             │
+                             │
+                             │
+                      ┌──────┴───────────┐
+                      │                  │
+                      │ GET API          │
+                      │                  │
+                      └───────┬──────────┘
+                              │
+                        ────┐ │ ┌────
+                            │ │ │ Cypher
+                            │ │ │
+                            │ │ │ Prevent Third party from read/write sent message
+                            │ │ │ Prevent Third party to add node and send message
+                            │ │ │
+                        ────┘ │ └────
+                              │
+                      ┌───────┴──────────┐
+                      │                  │
+                      │ DummySensor      │
+                      │                  │
+                      └──────────────────┘
+
+Database Schema
+
+Table Data
+    - Time
+    - Source
+    - BatteryLevel
+    - SensorValue
+    - SensorType
+
+Table CommandQueue
+    - DestinationNode
+    - CommandString
+
+Table NodeList
+    - LocationString
+    - NodePublicKey
