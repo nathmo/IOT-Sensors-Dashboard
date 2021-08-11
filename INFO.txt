@@ -1,62 +1,57 @@
 
 Goal
 Get data from sensors
+Send data over LoRa
+store data ubidots
 Display data from sensors
-store data from sensors
 Queue commands for sensors
 
 Structure
 
-
 ┌─────────────────┐   ┌──────────────────┐   ┌───────────────┐    ┌───────────────┐
 │                 │   │                  │   │               │    │               │
 │ Alert (mail)    │   │ Dashboard        │   │ Data Export   │    │ Remote admin  │
-│                 │   │                  │   │               │    │               │
+│ via ubidots API │   │                  │   │               │    │               │
 └─────────┬───────┘   └─────┬────────────┘   └──┬────────────┘    └──────┬────────┘
           │                 │                   │                        │
           └─────────────┐   │  ┌────────────────┘                        │
                         │   │  │                                         │
                       ┌─┴───┴──┴─────────┐                               │
                       │                  ├───────────────────────────────┘
-                      │ MySQL DB         │
-                      │                  │
-                      └──────┬───────────┘
-                             │
-                             │
-                             │
-                      ┌──────┴───────────┐
-                      │                  │
-                      │ GET API          │
+                      │ Ubidots          │
                       │                  │
                       └───────┬──────────┘
                               │
                         ────┐ │ ┌────
-                            │ │ │ Cypher
+                            │ │ │ LoRaWAN
                             │ │ │
-                            │ │ │ Prevent Third party from read/write sent message
-                            │ │ │ Prevent Third party to add node and send message
+                            │ │ │
+                            │ │ │
                             │ │ │
                         ────┘ │ └────
                               │
                       ┌───────┴──────────┐
                       │                  │
-                      │ DummySensor      │
+                      │ Node Sensor      │
                       │                  │
                       └──────────────────┘
+Hardware
+  - Dragino LSN50V2
+      - LoRa ST (same in LSN50)
+        - STM32l0x  CPU
+        - Sx1276 lora module
+  - HX711
+  - Load Cell
 
-Database Schema
-
-Table Data
-    - Time
-    - Source
-    - BatteryLevel
-    - SensorValue
-    - SensorType
-
-Table CommandQueue
-    - DestinationNode
-    - CommandString
-
-Table NodeList
-    - LocationString
-    - NodePublicKey
+Source
+  - https://wiki.dragino.com/index.php?title=LoRa_ST
+  - https://www.dragino.com/downloads/downloads/LSN50-LoRaST/Datasheet_LSN50_v2.pdf
+  - https://wiki.dragino.com/index.php?title=LoRa_Sensor_Node-LSN50#Program_LSN50
+  - https://github.com/dragino/LoRa_STM32
+  - https://www.hackster.io/makercolombia/propane-tank-iot-level-meter-a7f6f8
+  - https://www.dragino.com/downloads/index.php?dir=LSN50-LoRaST/
+  - https://www.dragino.com/downloads/downloads/LSN50-LoRaST/Utility/Alternative%20method%20to%20flash%20STM32%20via%20UART.pdf
+  - https://github.com/dragino/Lora/blob/master/LSN50/v2.0/LoRa%20ST%20Sensor%20Node%20v2.0.sch.pdf
+  - https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-programmers/stm32cubeprog.license=1628510216000.product=STM32CubePrg-Lin.version=2.7.0.html
+  - https://www.dragino.com/downloads/downloads/LoRa-GPS-HAT/LoRa_GPS_HAT_UserManual_v1.0.pdf
+  - https://www.thethingsnetwork.org/forum/t/low-cost-single-channel-rpi-gateway/31392/20
