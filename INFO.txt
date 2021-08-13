@@ -55,3 +55,4 @@ Source
   - https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-programmers/stm32cubeprog.license=1628510216000.product=STM32CubePrg-Lin.version=2.7.0.html
   - https://www.dragino.com/downloads/downloads/LoRa-GPS-HAT/LoRa_GPS_HAT_UserManual_v1.0.pdf
   - https://www.thethingsnetwork.org/forum/t/low-cost-single-channel-rpi-gateway/31392/20
+  - https://microclub.ch/wp-content/uploads/2018/10/Pr%C3%A9sentation-Lora-Microclub-2018a.pdf
